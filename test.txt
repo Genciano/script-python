@@ -1,6 +1,8 @@
 Linha 1
 Linha 2
 Trecho alvo
+Nova linha teste A
+Nova linha teste B
 Nova linha A
 Nova linha B
 Nova linha A
