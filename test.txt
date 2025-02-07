@@ -1,0 +1,6 @@
+Linha 1
+Linha 2
+Trecho alvo
+Nova linha A
+Nova linha B
+Linha 4

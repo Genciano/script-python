@@ -1,48 +1,31 @@
 import git
-import os 
+import os
 
-def download_repo
+# Configurações para o TESTE
+repo_path = "/mnt/c/Users/155298/Desktop/Guia DevOps/Projetos/Script Python (Automação - Deinar)"
+arquivo = "test.txt"  # Arquivo de teste
+trecho = "Trecho alvo"  # Trecho onde adicionaremos novas linhas
+linhas_adicionais = ["Nova linha A\n", "Nova linha B\n"]  # Linhas que serão inseridas
+mensagem_commit = "Testando modificação do arquivo"
 
-    if not os.path.exists(local_path):
-        git.Repo.clone_from(repo_url, local_path)
-    else:
-        print(f"Repositório já existe em {local_path}")
-
-def alterar_arquivo(local_path, arquivo, trecho, linhas_adicionais):
-    arquivo_path = os.path.join(local_path, arquivo)
-
-    with open(arquivo_path, 'r') as f:
-        conteudo = f.readlines()
-        
-    novo_conteudo = []
-    for linha in conteudo:
-        novo_conteudo.append(linha)
+def modificar_arquivo(arquivo, trecho, linhas_adicionais):
+    arquivo_completo = os.path.join(repo_path, arquivo)  # Garante que o caminho completo seja usado
+    with open(arquivo_completo, "r", encoding="utf-8") as f:
+        linhas = f.readlines()
+    
+    nova_lista = []
+    for linha in linhas:
+        nova_lista.append(linha)
         if trecho in linha:
-            
-            novo_conteudo.extend(linhas_adicionais)
-            
-    with open(arquivo_path, 'w') as f:
-        f.writelines(novo_conteudo)
-        
-def commit_alteracoes(local_path, mensagem_commit):
-    repo = git.Repo(local_path)
-    repo.Git.add(A=True)
-    repo.index.commit(mensagem_commit)
-    print(f"Commit realizado: {mensagem_commit}")
+            nova_lista.extend(linhas_adicionais)  # Adiciona novas linhas após o trecho encontrado
+
+    with open(arquivo_completo, "w", encoding="utf-8") as f:
+        f.writelines(nova_lista)
     
+    print(f"Arquivo {arquivo_completo} modificado com sucesso.")
+
 def main():
-    repo_url = 'https://github.com/usuario/repo.git'
-    local_path = '/caminho/para/repositorio'
-    arquivo = 'caminho/do/arquivo/para/modificar.txt'
-    trecho = 'texto a ser encontrado'
-    linhas_adicionais = ['Nova linha 1\n', 'Nova linha 2\n']
-    mensagem_commit = 'Adicionando novas linhas no arquivo'
-    
-    download_repo(repo_url, local_path)
-    
-    alterar_arquivo(local_path, arquivo, trecho, linhas_adicionais)
-    
-    commit_alteracoes(local_path, mensagem_commit)
-    
-if __name__'__main__':
+    modificar_arquivo("test.txt", trecho, linhas_adicionais)
+
+if __name__ == "__main__":
     main()
